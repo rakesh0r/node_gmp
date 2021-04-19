@@ -1,25 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
-import joi from "joi";
 import { User } from "./user";
+import { userSchema } from "./validation/schemas/user-schema";
 
 const userRouter = express.Router();
 
-const userSchema = joi.object().keys({
-    id: joi.string().guid({
-        version: [
-            'uuidv4',
-            'uuidv5'
-        ]
-    }).required(),
-    login: joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
-    password: joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
-    age: joi.number().integer().min(4).max(130).required(),
-    isDeleted: joi.boolean().required(),
-});
-
 const users: User[] = [
-    { id: '30a7863b-7e0a-47b7-8559-6a20cd431aca', login: 'rakesh', password: 'rakesh', age: 20, isDeleted: false },
-    { id: '30a7863b-7e0a-47b7-8559-6a20cd431acb', login: 'max', password: 'rakesh', age: 22, isDeleted: false },
+    { id: '30a7863b-7e0a-47b7-8559-6a20cd431aca', login: 'rakesh', password: 'rakesh', age: 20, isdeleted: false },
+    { id: '30a7863b-7e0a-47b7-8559-6a20cd431acb', login: 'max', password: 'rakesh', age: 22, isdeleted: false },
 ];
 
 const validateSchema = (schema: any) => (req: Request, res: Response, next: NextFunction) => {
@@ -78,7 +65,7 @@ userRouter.delete('/users/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     const userIndex = users.findIndex((user) => user.id === id);
     if (userIndex > -1) {
-        users[userIndex].isDeleted = true;
+        users[userIndex].isdeleted = true;
     }
     return res.status(200).send();
 });
