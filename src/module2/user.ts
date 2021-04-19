@@ -4,5 +4,5 @@ export type User = {
     login: string;
     password: string;
     age: number;
-    isDeleted: boolean;
+    isdeleted: boolean;
 }
