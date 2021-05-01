@@ -1,7 +1,7 @@
-import User from './user';
+import User from './users';
 import Group from './group';
 
 export {
     Group,
-    User
+    User,
 }

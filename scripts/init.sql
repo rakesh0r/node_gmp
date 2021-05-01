@@ -1,10 +1,9 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE TABLE IF NOT EXISTS Users (id uuid DEFAULT uuid_generate_v4 (), login VARCHAR ( 50 ) UNIQUE NOT NULL, password VARCHAR ( 50 ) NOT NULL, age INT NOT NULL, isdeleted BOOLEAN NOT NULL);
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431aca', 'rakesh', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acb', 'jhon', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acc', 'Akshy', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acd', 'mike', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431ace', 'peter', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acf', 'alex', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd432acf', 'jenny', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
-INSERT INTO Users (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd433acf', 'julie', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT users_login_key DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431aca', 'rakesh', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acb', 'jhon', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acc', 'Akshy', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acd', 'mike', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431ace', 'peter', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd431acf', 'alex', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd432acf', 'jenny', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
+INSERT INTO "Users" (id, login, password, age, isdeleted) VALUES ('30a7863b-7e0a-47b7-8559-6a20cd433acf', 'julie', 'rakesh', 20, false) ON CONFLICT ON CONSTRAINT "Users_pkey" DO NOTHING;
