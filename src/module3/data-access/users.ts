@@ -1,40 +1,47 @@
-import UserModel from '../models/user';
+import { User as UserModel, Group as GroupModel} from '../models';
 import { UserAttributes } from '../types/userAttributes';
 import { Op } from 'sequelize';
-
-export const getUsers = async (login: string, limit: number) => {
-    const filters: any = {
-        isdeleted: false,
-    };
-    
-    if (login) {
-        filters['login'] = {[Op.substring]: login };
+import Base from './base';
+class User extends Base {
+    constructor() {
+        super(UserModel)
     }
 
-    return await UserModel.findAll({ where: filters , limit});
-}
-
-export const getUserById = async (id: string) => {
-    return await UserModel.findOne({ where: { id } });
-}
-
-export const saveUser = async (user: UserAttributes) => {
-    return await UserModel.create(user);
-}
-
-export const updateUser = async (id: string, user : UserAttributes) => {
-    console.log(id);
-    return await UserModel.update({ ...user }, {
-        where: {
-            id
+    async getUsers(login: string, limit: number) {
+        const filters: any = {
+            isdeleted: false,
+        };
+        
+        if (login) {
+            filters['login'] = {[Op.substring]: login };
         }
-    });
+    
+        return await super.findAll({ where: filters , limit, include: GroupModel});
+    }
+
+    async getUserById(id: string) {
+        return await super.findOne({ where: { id } });
+    }
+
+    async saveUser(user: UserAttributes) {
+        return await super.create(user);
+    }
+
+    async updateUser(id: string, user : UserAttributes) {
+        return await super.update({ ...user }, {
+            where: {
+                id
+            }
+        });
+    }
+
+    async deleteUser(id: string) {
+        return await super.update({ isdeleted: true }, {
+            where: {
+                id
+            }
+        });
+    }
 }
 
-export const deleteUser = async (id: string) => {
-    return await UserModel.update({ isdeleted: true }, {
-        where: {
-            id
-        }
-    });
-}
+export default User; 

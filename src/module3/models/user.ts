@@ -3,13 +3,13 @@ import {
     DataTypes,
   } from "sequelize";
 import { UserAttributes } from "../types/userAttributes";
-import db from './';
-
+import { sequelize } from '../loaders/sequelize';
+import Group from './group';
 interface UserInstance
   extends Model<UserAttributes>,
     UserAttributes {}
 
-const UserModel = db.define<UserInstance>("users", {
+const User = sequelize.define<UserInstance>("User", {
     id: {
       primaryKey: true,
       type: DataTypes.UUID,
@@ -30,4 +30,7 @@ const UserModel = db.define<UserInstance>("users", {
     timestamps: false
 });
 
-export default UserModel;
+User.belongsToMany(Group, { through: 'UserGroup' });
+Group.belongsToMany(User, { through: 'UserGroup' });
+
+export default User;
