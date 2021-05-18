@@ -1,2 +1,2 @@
 export * from './schemas/user-schema';
-export * from './schemas/group-schema';
+export {groupSchema, groupUpdateSchema} from './schemas/group-schema';

@@ -46,7 +46,6 @@ class Group extends Base {
             throw new Error('Group not found');
 
         } catch (error) {
-            console.log(error);
             return error;
         }
     }
