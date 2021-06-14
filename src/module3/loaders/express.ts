@@ -3,7 +3,7 @@ import cors from 'cors';
 import jwt from 'express-jwt';
 import routes from '../routers';
 import Logger from './logger';
-import {JWT_SECRET} from "../config";
+import config from "../config";
 
 export default async ({ app }: { app: express.Application }) => {
   /**
@@ -24,7 +24,7 @@ export default async ({ app }: { app: express.Application }) => {
 
   app.use(cors());
 
-  app.use(jwt({ secret: JWT_SECRET, algorithms: ['HS256']}).unless({path: ['/login']}));
+  app.use(jwt({ secret: config.jwtSecret, algorithms: ['HS256']}).unless({path: ['/login']}));
 
   // Log service method and arguments
   app.use((req: Request, res: Response, next: NextFunction) => {

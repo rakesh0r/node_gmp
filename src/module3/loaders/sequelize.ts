@@ -2,11 +2,11 @@ import {
     Sequelize,
   } from "sequelize";
 import Logger from './logger';
-import {POSTGRES_URL} from "../config";
+import config from "../config";
 import path from 'path';
 const fs = require('fs');
 
-export const sequelize = new Sequelize(POSTGRES_URL);
+export const sequelize = new Sequelize(config.databaseURL);
 
 export default async () => {
     
