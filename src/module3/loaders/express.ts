@@ -1,6 +1,9 @@
 import express, { Request, Response, NextFunction } from "express";
+import cors from 'cors';
+import jwt from 'express-jwt';
 import routes from '../routers';
 import Logger from './logger';
+import {JWT_SECRET} from "../config";
 
 export default async ({ app }: { app: express.Application }) => {
   /**
@@ -18,6 +21,10 @@ export default async ({ app }: { app: express.Application }) => {
   app.enable('trust proxy');
 
   app.use(express.json());
+
+  app.use(cors());
+
+  app.use(jwt({ secret: JWT_SECRET, algorithms: ['HS256']}).unless({path: ['/login']}));
 
   // Log service method and arguments
   app.use((req: Request, res: Response, next: NextFunction) => {

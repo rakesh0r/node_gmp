@@ -23,6 +23,10 @@ class User extends Base {
         return await super.findOne({ where: { id } });
     }
 
+    async getUserByLogin({username, password}: { username: string, password: string }) {
+        return await super.findOne({ where: { login: username, password } });
+    }
+
     async saveUser(user: UserAttributes) {
         return await super.create(user);
     }
