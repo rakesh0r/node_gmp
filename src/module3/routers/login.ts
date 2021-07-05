@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { JWT_SECRET } from "../config";
+import config from "../config";
 import { loginSchema } from "../validation";
 import { validateSchema, BadRequestError } from "../utils";
 import { User } from "../data-access";
@@ -13,7 +13,7 @@ loginRouter.post('/login', validateSchema(loginSchema), async (req: Request, res
     try {
         const user = await userDto.getUserByLogin(req.body);
         if(user) {
-            const token = jwt.sign(user.toJSON(), JWT_SECRET, {expiresIn: 120});
+            const token = jwt.sign(user.toJSON(), config.jwtSecret, {expiresIn: 120});
             return res.json({token});
         }
         next(new BadRequestError(401, 'Bad username/password'));
